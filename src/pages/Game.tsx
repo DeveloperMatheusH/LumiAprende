@@ -4,9 +4,16 @@ import { Link } from "react-router-dom";
 import ColorCard from "@/components/ColorCard";
 import OptionButton from "@/components/OptionButton";
 import ScoreDisplay from "@/components/ScoreDisplay";
+import VolumeControl from "@/components/VolumeControl";
 import FeedbackAnimation from "@/components/FeedbackAnimation";
 import { generateQuestion, playSuccessSound, playErrorSound, type Color } from "@/utils/gameData";
 import { ArrowLeftIcon } from "lucide-react";
+
+declare global {
+  interface Window {
+    bgMusic?: HTMLAudioElement;
+  }
+}
 
 const Game: React.FC = () => {
   const [score, setScore] = useState(0);
@@ -55,6 +62,30 @@ const Game: React.FC = () => {
     }
   };
 
+  // Iniciar a música de fundo
+  useEffect(() => {
+    if (!window.bgMusic) {
+      window.bgMusic = new Audio('/bg-music.mp3');
+      window.bgMusic.loop = true;
+      
+      // Carregar volume salvo
+      const savedVolume = localStorage.getItem("bgMusicVolume");
+      const savedMuted = localStorage.getItem("bgMusicMuted");
+      
+      window.bgMusic.volume = (savedMuted === "true") ? 0 : (savedVolume ? parseFloat(savedVolume) : 0.5);
+    }
+    
+    window.bgMusic.play().catch(err => {
+      console.log("Autoplay blocked. User interaction required to play audio.");
+    });
+    
+    return () => {
+      if (window.bgMusic) {
+        window.bgMusic.pause();
+      }
+    };
+  }, []);
+
   // Initial effect to set up the first question
   useEffect(() => {
     setQuestion(generateQuestion());
@@ -77,13 +108,16 @@ const Game: React.FC = () => {
         <ArrowLeftIcon className="h-5 w-5 text-gray-600" />
       </Link>
       
+      {/* Volume Control */}
+      <VolumeControl />
+      
       {/* Score */}
       <ScoreDisplay score={score} />
       
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center justify-center w-full max-w-md">
         {/* Color card */}
-        <div className="mb-6 w-full flex justify-center">
+        <div className="mb-4 w-full flex justify-center">
           <ColorCard 
             color={question.correctColor} 
             isRevealing={isRevealing}
@@ -91,7 +125,7 @@ const Game: React.FC = () => {
         </div>
         
         {/* Options */}
-        <div className="w-full space-y-3 px-4">
+        <div className="w-full grid grid-cols-2 gap-2 px-4">
           {question.options.map((color) => (
             <OptionButton
               key={color.name}

@@ -18,8 +18,8 @@ const OptionButton: React.FC<OptionButtonProps> = ({
   feedbackState
 }) => {
   let buttonClasses = `
-    option-button w-full p-4 rounded-xl text-center font-medium text-lg 
-    mb-3 transition-all duration-300 btn-hover
+    option-button w-full p-2 rounded-xl text-center font-medium text-md 
+    mb-2 transition-all duration-300 btn-hover
     ${disabled ? "opacity-70" : "opacity-100"}
   `;
 
