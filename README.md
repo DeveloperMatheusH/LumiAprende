@@ -1,58 +1,12 @@
-# Welcome to your Lovable project
+# LumiAprende
 
-## Project info
+## Bem-Vindo ao LumiAprende!
 
-**URL**: https://lovable.dev/projects/8fdb8a59-4930-4a88-9ed1-2ff5b484c6f6
+### Informações do Projeto!
 
-## How can I edit this code?
+Este projeto surge com o propósito de auxiliar crianças e adolescentes no aprendizado do pareamento de cores de forma lúdica e interativa. O aplicativo visa garantir que o aprendizado seja divertido e acessível, especialmente para aqueles com dificuldades de aprendizagem. A iniciativa busca promover o desenvolvimento cognitivo e estimular a atenção e a concentração através de um jogo educativo e envolvente.
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/8fdb8a59-4930-4a88-9ed1-2ff5b484c6f6) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+### Este Projeto foi Utilizado as Seguintes Linguagens:
 
 - Vite
 - TypeScript
@@ -60,10 +14,10 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+### Recursos Adicionais:
 
-Simply open [Lovable](https://lovable.dev/projects/8fdb8a59-4930-4a88-9ed1-2ff5b484c6f6) and click on Share -> Publish.
+* Design limpo e intuitivo com cores vibrantes.
+* Animações interativas e feedback visual positivo.
+* Música de fundo alegre e relaxante.
+* Repetição para reforçar o aprendizado.
 
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
