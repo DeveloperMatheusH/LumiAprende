@@ -48,14 +48,19 @@ export function generateQuestion(): {
   };
 }
 
-// Function to play success sound (placeholder - would use actual audio in production)
+// Function to play success sound with fireworks
 export function playSuccessSound() {
-  // This would be replaced with actual audio implementation
-  console.log("Playing success sound");
+  try {
+    const successSound = new Audio('/success-sound.mp3');
+    successSound.volume = 0.5;
+    successSound.play();
+  } catch (err) {
+    console.log("Error playing success sound:", err);
+  }
 }
 
-// Function to play error sound (placeholder - would use actual audio in production)
+// Function to play error sound (empty implementation to avoid negative feedback)
 export function playErrorSound() {
-  // This would be replaced with actual audio implementation
-  console.log("Playing error sound");
+  // We're not playing an error sound as per requirements
+  console.log("Error feedback - no sound played");
 }
