@@ -7,7 +7,8 @@ import ScoreDisplay from "@/components/ScoreDisplay";
 import VolumeControl from "@/components/VolumeControl";
 import FeedbackAnimation from "@/components/FeedbackAnimation";
 import { generateQuestion, playSuccessSound, playErrorSound, type Color } from "@/utils/gameData";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, Smile, Heart } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 declare global {
   interface Window {
@@ -22,6 +23,7 @@ const Game: React.FC = () => {
   const [feedbackState, setFeedbackState] = useState<"none" | "correct" | "incorrect">("none");
   const [showFeedback, setShowFeedback] = useState(false);
   const [isRevealing, setIsRevealing] = useState(true);
+  const [showCongratulations, setShowCongratulations] = useState(false);
 
   const handleOptionSelect = (selectedColor: Color) => {
     if (feedbackState !== "none") return;
@@ -33,7 +35,15 @@ const Game: React.FC = () => {
       setFeedbackState("correct");
       setShowFeedback(true);
       playSuccessSound();
-      setScore(prevScore => prevScore + 10);
+      
+      // Update score
+      const newScore = score + 10;
+      setScore(newScore);
+      
+      // Check if score reached 100
+      if (newScore === 100) {
+        setShowCongratulations(true);
+      }
       
       // Reset and generate new question after a delay
       setTimeout(() => {
@@ -150,6 +160,25 @@ const Game: React.FC = () => {
         isCorrect={feedbackState === "correct"} 
         visible={showFeedback}
       />
+
+      {/* Congratulations Dialog */}
+      <Dialog open={showCongratulations} onOpenChange={setShowCongratulations}>
+        <DialogContent className="bg-white rounded-xl p-6 max-w-md mx-auto text-center border-4 border-purple-300">
+          <DialogTitle className="text-2xl font-bold text-purple-700 mb-4">
+            Parabéns! <Smile className="inline-block ml-1 text-yellow-500" />
+          </DialogTitle>
+          <div className="py-4 text-lg text-gray-700">
+            <p>Você chegou aos 100 pontos, continue assim Pequeno(a) Lumi</p>
+            <Heart className="inline-block ml-1 h-6 w-6 text-pink-500 mt-3" fill="#EC407A" />
+          </div>
+          <button 
+            onClick={() => setShowCongratulations(false)}
+            className="mt-4 bg-purple-600 text-white py-2 px-6 rounded-full hover:bg-purple-700 transition-colors font-medium"
+          >
+            Continuar Jogando
+          </button>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
