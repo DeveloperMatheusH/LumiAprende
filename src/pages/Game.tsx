@@ -24,6 +24,7 @@ const Game: React.FC = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [isRevealing, setIsRevealing] = useState(true);
   const [showCongratulations, setShowCongratulations] = useState(false);
+  const [achievementPoints, setAchievementPoints] = useState(0);
 
   const handleOptionSelect = (selectedColor: Color) => {
     if (feedbackState !== "none") return;
@@ -40,8 +41,9 @@ const Game: React.FC = () => {
       const newScore = score + 10;
       setScore(newScore);
       
-      // Check if score reached 100
-      if (newScore === 100) {
+      // Check if score reached a multiple of 100
+      if (newScore % 100 === 0) {
+        setAchievementPoints(newScore);
         setShowCongratulations(true);
       }
       
@@ -168,7 +170,7 @@ const Game: React.FC = () => {
             Parabéns! <Smile className="inline-block ml-1 text-yellow-500" />
           </DialogTitle>
           <div className="py-4 text-lg text-gray-700">
-            <p>Você chegou aos 100 pontos, continue assim Pequeno(a) Lumi</p>
+            <p>Você chegou aos {achievementPoints} pontos, continue assim Pequeno(a) Lumi</p>
             <Heart className="inline-block ml-1 h-6 w-6 text-pink-500 mt-3" fill="#EC407A" />
           </div>
           <button 
