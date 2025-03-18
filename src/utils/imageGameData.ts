@@ -20,13 +20,13 @@ export const colorImages: ColorImage[] = [
   },
   {
     color: { name: "Green", value: "#0F9D58", nameInPortuguese: "Verde" },
-    imageUrl: "icon-lemon",
-    description: "Limão verde"
+    imageUrl: "icon-banana",
+    description: "Banana verde"
   },
   {
     color: { name: "Yellow", value: "#FFCB3E", nameInPortuguese: "Amarelo" },
-    imageUrl: "icon-lemon",
-    description: "Limão amarelo"
+    imageUrl: "icon-banana",
+    description: "Banana amarela"
   },
   {
     color: { name: "Purple", value: "#7E57C2", nameInPortuguese: "Roxo" },
@@ -35,8 +35,8 @@ export const colorImages: ColorImage[] = [
   },
   {
     color: { name: "Orange", value: "#FF7043", nameInPortuguese: "Laranja" },
-    imageUrl: "icon-orange",
-    description: "Laranja"
+    imageUrl: "icon-cherry",
+    description: "Cereja laranja"
   },
   {
     color: { name: "Pink", value: "#EC407A", nameInPortuguese: "Rosa" },
@@ -46,7 +46,7 @@ export const colorImages: ColorImage[] = [
   {
     color: { name: "Brown", value: "#795548", nameInPortuguese: "Marrom" },
     imageUrl: "icon-cookie",
-    description: "Chocolate marrom"
+    description: "Cookie marrom"
   }
 ];
 

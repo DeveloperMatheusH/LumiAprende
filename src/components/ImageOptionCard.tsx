@@ -2,8 +2,8 @@
 import React from "react";
 import { ColorImage } from "@/utils/imageGameData";
 import { 
-  Apple, Grape, Lemon, Cloud, 
-  Cherry, Orange, Flower, Cookie
+  Apple, Grape, Banana, Cloud, 
+  Cherry, LucideProps, Flower, Cookie
 } from "lucide-react";
 
 interface ImageOptionCardProps {
@@ -39,13 +39,13 @@ const ImageOptionCard: React.FC<ImageOptionCardProps> = ({
       case "blue":
         return <Cloud size={iconSize} color={color.value} />;
       case "green":
-        return <Lemon size={iconSize} color={color.value} />;
+        return <Banana size={iconSize} color={color.value} strokeWidth={1.5} />;
       case "yellow":
-        return <Lemon size={iconSize} color={color.value} />;
+        return <Banana size={iconSize} color={color.value} />;
       case "purple":
         return <Grape size={iconSize} color={color.value} />;
       case "orange":
-        return <Orange size={iconSize} color={color.value} />;
+        return <Cherry size={iconSize} color={color.value} />;
       case "pink":
         return <Flower size={iconSize} color={color.value} />;
       case "brown":
