@@ -1,3 +1,4 @@
+
 import React from "react";
 import { MemoryCard as MemoryCardType } from "@/utils/memoryGameData";
 import { Color } from "@/utils/gameData";
@@ -19,7 +20,11 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
 }) => {
   const isColor = card.type === "color" && typeof card.content !== "string";
   const colorValue = isColor ? (card.content as Color).value : "#FFFFFF";
-  const colorName = isColor ? (card.content as Color).nameInPortuguese : (card.content as string);
+  const colorName = isColor 
+    ? (card.content as Color).nameInPortuguese 
+    : typeof card.content === "string" 
+      ? card.content 
+      : "";
   
   const frontClasses = cn(
     "absolute inset-0 flex items-center justify-center rounded-xl shadow-md",
@@ -36,8 +41,11 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
   );
 
   // Function to render fruit icon based on color name
-  const renderFruitIcon = (colorName: string, size = 40) => {
-    switch(colorName.toLowerCase()) {
+  const renderFruitIcon = (name: string, size = 40) => {
+    // Safety check to ensure we have a string before calling toLowerCase
+    const safeColorName = typeof name === 'string' ? name.toLowerCase() : '';
+    
+    switch(safeColorName) {
       case "amarelo":
         return <Banana size={size} color="#FFCB3E" />;
       case "vermelho":
