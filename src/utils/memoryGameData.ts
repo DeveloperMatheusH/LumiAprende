@@ -22,14 +22,14 @@ export const memoryGameLevels: MemoryGameLevel[] = [
   {
     name: "Fácil",
     pairsCount: 6,
-    cardTypes: ["color"],
-    description: "6 pares de cores"
+    cardTypes: ["color", "image"],
+    description: "6 pares de cores e frutas"
   },
   {
     name: "Médio",
     pairsCount: 8,
-    cardTypes: ["color", "text"],
-    description: "8 pares de cores e nomes"
+    cardTypes: ["color", "text", "image"],
+    description: "8 pares variados"
   },
   {
     name: "Difícil",
@@ -45,38 +45,70 @@ export function generateMemoryCards(level: MemoryGameLevel): MemoryCard[] {
   const colors = [...gameColors].sort(() => Math.random() - 0.5).slice(0, level.pairsCount);
   
   colors.forEach((color, index) => {
-    // Create pairs based on difficulty level
-    if (level.cardTypes.includes("color")) {
-      // First card with color
-      pairs.push({
-        id: `color-${index}-1`,
-        type: "color",
-        content: color,
-        isFlipped: false,
-        isMatched: false
-      });
-      
-      // Second card based on level
-      if (level.cardTypes.includes("text") && index < level.pairsCount / 2) {
-        // Text pair
-        pairs.push({
-          id: `color-${index}-2`,
-          type: "text",
-          content: color.nameInPortuguese,
-          isFlipped: false,
-          isMatched: false
-        });
+    // Determine card type for first card based on difficulty and position
+    let firstCardType: CardType = "color";
+    let secondCardType: CardType = "color";
+    
+    // For easy level: alternate between color and image pairs
+    if (level.name === "Fácil") {
+      if (index % 2 === 0) {
+        firstCardType = "color";
+        secondCardType = "image";
       } else {
-        // Same color pair
-        pairs.push({
-          id: `color-${index}-2`,
-          type: "color",
-          content: color,
-          isFlipped: false,
-          isMatched: false
-        });
+        firstCardType = "image";
+        secondCardType = "image";
+      }
+    } 
+    // For medium level: mix of all types
+    else if (level.name === "Médio") {
+      if (index % 3 === 0) {
+        firstCardType = "color";
+        secondCardType = "text";
+      } else if (index % 3 === 1) {
+        firstCardType = "color";
+        secondCardType = "image";
+      } else {
+        firstCardType = "image";
+        secondCardType = "text";
       }
     }
+    // For difficult level: more complex mix
+    else {
+      if (index % 5 === 0) {
+        firstCardType = "color";
+        secondCardType = "text";
+      } else if (index % 5 === 1) {
+        firstCardType = "color";
+        secondCardType = "image";
+      } else if (index % 5 === 2) {
+        firstCardType = "text";
+        secondCardType = "image";
+      } else if (index % 5 === 3) {
+        firstCardType = "image";
+        secondCardType = "image";
+      } else {
+        firstCardType = "color";
+        secondCardType = "color";
+      }
+    }
+    
+    // First card
+    pairs.push({
+      id: `card-${index}-1`,
+      type: firstCardType,
+      content: firstCardType === "text" ? color.nameInPortuguese : color,
+      isFlipped: false,
+      isMatched: false
+    });
+    
+    // Second card
+    pairs.push({
+      id: `card-${index}-2`,
+      type: secondCardType,
+      content: secondCardType === "text" ? color.nameInPortuguese : color,
+      isFlipped: false,
+      isMatched: false
+    });
   });
   
   // Shuffle all cards

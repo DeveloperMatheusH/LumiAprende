@@ -1,6 +1,10 @@
 
 import React from "react";
 import { ColorImage } from "@/utils/imageGameData";
+import { 
+  Apple, Grape, Lemon, Cloud, 
+  Cherry, Orange, Flower, Cookie
+} from "lucide-react";
 
 interface ImageOptionCardProps {
   colorImage: ColorImage;
@@ -17,12 +21,39 @@ const ImageOptionCard: React.FC<ImageOptionCardProps> = ({
 }) => {
   let cardClasses = `
     relative overflow-hidden rounded-xl shadow-md transition-all duration-300
-    w-full aspect-square mb-2
+    w-full aspect-square mb-2 flex items-center justify-center bg-white
     ${disabled ? "opacity-70" : "opacity-100"}
     ${feedbackState === "correct" ? "ring-4 ring-game-green" : ""}
     ${feedbackState === "incorrect" ? "ring-4 ring-game-red" : ""}
     hover:scale-[1.02] active:scale-[0.98]
   `;
+
+  // Render the appropriate icon based on the description
+  const renderIcon = () => {
+    const { color, description } = colorImage;
+    const iconSize = 48;
+    
+    switch(color.name.toLowerCase()) {
+      case "red":
+        return <Apple size={iconSize} color={color.value} />;
+      case "blue":
+        return <Cloud size={iconSize} color={color.value} />;
+      case "green":
+        return <Lemon size={iconSize} color={color.value} />;
+      case "yellow":
+        return <Lemon size={iconSize} color={color.value} />;
+      case "purple":
+        return <Grape size={iconSize} color={color.value} />;
+      case "orange":
+        return <Orange size={iconSize} color={color.value} />;
+      case "pink":
+        return <Flower size={iconSize} color={color.value} />;
+      case "brown":
+        return <Cookie size={iconSize} color={color.value} />;
+      default:
+        return <Apple size={iconSize} color={color.value} />;
+    }
+  };
 
   return (
     <button
@@ -30,11 +61,7 @@ const ImageOptionCard: React.FC<ImageOptionCardProps> = ({
       onClick={onClick}
       disabled={disabled}
     >
-      <img 
-        src={colorImage.imageUrl} 
-        alt={colorImage.description}
-        className="w-full h-full object-cover"
-      />
+      {renderIcon()}
       
       {/* Feedback overlay */}
       {feedbackState === "correct" && (

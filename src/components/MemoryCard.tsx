@@ -3,6 +3,9 @@ import React from "react";
 import { MemoryCard as MemoryCardType } from "@/utils/memoryGameData";
 import { Color } from "@/utils/gameData";
 import { cn } from "@/lib/utils";
+import { 
+  Banana, Apple, Grape, Cherry, Lemon, Orange
+} from "lucide-react";
 
 interface MemoryCardProps {
   card: MemoryCardType;
@@ -33,6 +36,34 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
     "text-white text-2xl font-bold"
   );
 
+  // Function to render fruit icon based on color name
+  const renderFruitIcon = (colorName: string, size = 40) => {
+    switch(colorName.toLowerCase()) {
+      case "amarelo":
+        return <Banana size={size} color="#FFCB3E" />;
+      case "vermelho":
+        return <Apple size={size} color="#FF5252" />;
+      case "roxo":
+        return <Grape size={size} color="#7E57C2" />;
+      case "laranja":
+        return <Orange size={size} color="#FF7043" />;
+      case "verde":
+        return <Lemon size={size} color="#0F9D58" />;
+      case "rosa":
+        return <Cherry size={size} color="#EC407A" />;
+      case "azul":
+        return <Cherry size={size} color="#4285F4" />;
+      case "marrom":
+        return <Apple size={size} color="#795548" strokeWidth={1} fill="#795548" />;
+      case "ciano":
+        return <Lemon size={size} color="#00BCD4" />;
+      case "cinza":
+        return <Orange size={size} color="#9E9E9E" />;
+      default:
+        return <Apple size={size} color={colorValue} />;
+    }
+  };
+
   return (
     <div 
       className={`
@@ -59,12 +90,8 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
         )}
         
         {card.type === "image" && (
-          <div className="w-full h-full rounded-xl bg-white">
-            <img 
-              src={`/images/${colorName.toLowerCase()}.jpg`} 
-              alt={colorName}
-              className="w-full h-full object-cover rounded-xl"
-            />
+          <div className="w-full h-full rounded-xl bg-white flex items-center justify-center">
+            {renderFruitIcon(colorName)}
           </div>
         )}
       </div>

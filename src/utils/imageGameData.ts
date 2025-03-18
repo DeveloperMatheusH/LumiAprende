@@ -3,49 +3,49 @@ import { Color } from "./gameData";
 
 export interface ColorImage {
   color: Color;
-  imageUrl: string;
+  imageUrl: string; // Keeping this for backwards compatibility
   description: string;
 }
 
 export const colorImages: ColorImage[] = [
   {
     color: { name: "Red", value: "#FF5252", nameInPortuguese: "Vermelho" },
-    imageUrl: "/images/apple.jpg",
+    imageUrl: "icon-apple",
     description: "Maçã vermelha"
   },
   {
     color: { name: "Blue", value: "#4285F4", nameInPortuguese: "Azul" },
-    imageUrl: "/images/sky.jpg",
+    imageUrl: "icon-cloud",
     description: "Céu azul"
   },
   {
     color: { name: "Green", value: "#0F9D58", nameInPortuguese: "Verde" },
-    imageUrl: "/images/leaf.jpg",
-    description: "Folha verde"
+    imageUrl: "icon-lemon",
+    description: "Limão verde"
   },
   {
     color: { name: "Yellow", value: "#FFCB3E", nameInPortuguese: "Amarelo" },
-    imageUrl: "/images/lemon.jpg",
+    imageUrl: "icon-lemon",
     description: "Limão amarelo"
   },
   {
     color: { name: "Purple", value: "#7E57C2", nameInPortuguese: "Roxo" },
-    imageUrl: "/images/grapes.jpg",
+    imageUrl: "icon-grape",
     description: "Uvas roxas"
   },
   {
     color: { name: "Orange", value: "#FF7043", nameInPortuguese: "Laranja" },
-    imageUrl: "/images/orange.jpg",
+    imageUrl: "icon-orange",
     description: "Laranja"
   },
   {
     color: { name: "Pink", value: "#EC407A", nameInPortuguese: "Rosa" },
-    imageUrl: "/images/flower.jpg",
+    imageUrl: "icon-flower",
     description: "Flor rosa"
   },
   {
     color: { name: "Brown", value: "#795548", nameInPortuguese: "Marrom" },
-    imageUrl: "/images/chocolate.jpg",
+    imageUrl: "icon-cookie",
     description: "Chocolate marrom"
   }
 ];
