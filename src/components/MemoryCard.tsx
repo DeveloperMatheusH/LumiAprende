@@ -26,9 +26,11 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
       ? card.content 
       : "";
   
+  // The key issue was here - the CSS classes for flipping weren't properly applied
   const frontClasses = cn(
     "absolute inset-0 flex items-center justify-center rounded-xl shadow-md",
     "backface-hidden transform transition-all duration-500",
+    // When card is flipped, front should show (rotate-y-0)
     card.isFlipped ? "rotate-y-0" : "rotate-y-180",
     card.isMatched ? "opacity-50" : "opacity-100"
   );
@@ -36,6 +38,7 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
   const backClasses = cn(
     "absolute inset-0 flex items-center justify-center rounded-xl bg-purple-600 shadow-md",
     "backface-hidden transform transition-all duration-500",
+    // When card is flipped, back should hide (rotate-y-180)
     card.isFlipped ? "rotate-y-180" : "rotate-y-0",
     "text-white text-2xl font-bold"
   );
@@ -82,7 +85,13 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
       onClick={() => !disabled && !card.isFlipped && onClick()}
     >
       {/* Front of card - content */}
-      <div className={frontClasses}>
+      <div 
+        className={frontClasses}
+        style={{ 
+          // Add explicit z-index to ensure proper stacking
+          zIndex: card.isFlipped ? 1 : 0
+        }}
+      >
         {card.type === "color" && (
           <div 
             className="w-full h-full rounded-xl flex items-center justify-center"
@@ -104,7 +113,13 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
       </div>
       
       {/* Back of card */}
-      <div className={backClasses}>
+      <div 
+        className={backClasses}
+        style={{ 
+          // Add explicit z-index to ensure proper stacking
+          zIndex: card.isFlipped ? 0 : 1
+        }}
+      >
         <span>?</span>
       </div>
     </div>
