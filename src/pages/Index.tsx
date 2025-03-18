@@ -33,7 +33,7 @@ const Index = () => {
           </div>
           
           <Link 
-            to="/game" 
+            to="/select-game" 
             className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 
                        text-white font-medium rounded-xl px-10 py-3
                        transition-all duration-300 shadow-md

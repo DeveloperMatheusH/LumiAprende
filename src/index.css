@@ -119,6 +119,23 @@
   .animate-firework:nth-child(4n) {
     --x: 70px;
   }
+
+  /* Memory game card flipping styles */
+  .perspective-500 {
+    perspective: 500px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
+
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
 }
 
 /* Custom page transitions */
@@ -193,3 +210,4 @@
   20%, 60% { transform: translateX(-8px); }
   40%, 80% { transform: translateX(8px); }
 }
+
