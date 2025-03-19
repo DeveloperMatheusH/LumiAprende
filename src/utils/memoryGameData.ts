@@ -21,21 +21,21 @@ export interface MemoryGameLevel {
 export const memoryGameLevels: MemoryGameLevel[] = [
   {
     name: "Fácil",
-    pairsCount: 6,
+    pairsCount: 5,  // Changed to 5 pairs (10 cards total)
     cardTypes: ["color", "image"],
-    description: "6 pares de cores e frutas"
+    description: "5 pares de cores e frutas"
   },
   {
     name: "Médio",
-    pairsCount: 8,
+    pairsCount: 5,  // Changed to 5 pairs (10 cards total)
     cardTypes: ["color", "text", "image"],
-    description: "8 pares variados"
+    description: "5 pares variados"
   },
   {
     name: "Difícil",
-    pairsCount: 10,
+    pairsCount: 5,  // Changed to 5 pairs (10 cards total)
     cardTypes: ["color", "text", "image"],
-    description: "10 pares variados"
+    description: "5 pares variados"
   }
 ];
 
@@ -45,50 +45,36 @@ export function generateMemoryCards(level: MemoryGameLevel): MemoryCard[] {
   const colors = [...gameColors].sort(() => Math.random() - 0.5).slice(0, level.pairsCount);
   
   colors.forEach((color, index) => {
-    // Determine card type for first card based on difficulty and position
-    let firstCardType: CardType = "color";
-    let secondCardType: CardType = "color";
+    // For all difficulty levels, always use images for one of the cards
+    let firstCardType: CardType = "image";
+    let secondCardType: CardType = "image";
     
-    // For easy level: alternate between color and image pairs
+    // For easy level: always image pairs
     if (level.name === "Fácil") {
-      if (index % 2 === 0) {
-        firstCardType = "color";
-        secondCardType = "image";
-      } else {
-        firstCardType = "image";
-        secondCardType = "image";
-      }
+      firstCardType = "image";
+      secondCardType = "image";
     } 
-    // For medium level: mix of all types
+    // For medium level: image pairs with some variety
     else if (level.name === "Médio") {
-      if (index % 3 === 0) {
-        firstCardType = "color";
-        secondCardType = "text";
-      } else if (index % 3 === 1) {
-        firstCardType = "color";
+      if (index % 2 === 0) {
+        firstCardType = "image";
         secondCardType = "image";
       } else {
         firstCardType = "image";
-        secondCardType = "text";
+        secondCardType = "color";
       }
     }
     // For difficult level: more complex mix
     else {
-      if (index % 5 === 0) {
-        firstCardType = "color";
+      if (index % 3 === 0) {
+        firstCardType = "image";
+        secondCardType = "color";
+      } else if (index % 3 === 1) {
+        firstCardType = "image";
         secondCardType = "text";
-      } else if (index % 5 === 1) {
-        firstCardType = "color";
-        secondCardType = "image";
-      } else if (index % 5 === 2) {
-        firstCardType = "text";
-        secondCardType = "image";
-      } else if (index % 5 === 3) {
+      } else {
         firstCardType = "image";
         secondCardType = "image";
-      } else {
-        firstCardType = "color";
-        secondCardType = "color";
       }
     }
     

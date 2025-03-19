@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon, Clock, Smile, Heart, RotateCw } from "lucide-react";
@@ -238,11 +237,8 @@ const MemoryGame: React.FC = () => {
         <span className="text-sm">Reiniciar</span>
       </button>
       
-      {/* Memory cards grid */}
-      <div className={`
-        w-full max-w-md grid gap-2 px-2 mb-4
-        ${currentLevel.pairsCount <= 6 ? 'grid-cols-3' : 'grid-cols-4'}
-      `}>
+      {/* Memory cards grid - Updated to a 3x4 layout to better fit 10 cards (5 pairs) */}
+      <div className="w-full max-w-md grid grid-cols-3 gap-3 px-2 mb-4">
         {cards.map(card => (
           <MemoryCard
             key={card.id}
