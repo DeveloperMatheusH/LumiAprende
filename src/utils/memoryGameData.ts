@@ -1,5 +1,5 @@
 
-import { Banana, Grape, Apple, Cherry, Lemon, Orange } from "lucide-react";
+import { Banana, Grape, Apple, Cherry } from "lucide-react";
 
 export interface MemoryCard {
   id: number;
@@ -33,16 +33,6 @@ const fruitIcons = [
     name: "cherry",
     color: "#FF5777", // pink
     Icon: Cherry
-  },
-  {
-    name: "lemon",
-    color: "#FDFD96", // light yellow
-    Icon: Lemon
-  },
-  {
-    name: "orange",
-    color: "#FFB347", // orange
-    Icon: Orange
   }
 ];
 
@@ -61,7 +51,7 @@ function shuffleArray<T>(array: T[]): T[] {
 /**
  * Generates a set of cards for the memory game
  */
-export function generateMemoryCards(numPairs = 5): MemoryCard[] {
+export function generateMemoryCards(numPairs = 4): MemoryCard[] {
   // Select random fruits for this game
   const selectedFruits = shuffleArray(fruitIcons).slice(0, numPairs);
   
