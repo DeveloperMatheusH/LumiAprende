@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon, Smile, Heart } from "lucide-react";
@@ -156,7 +155,7 @@ const ImageGame: React.FC = () => {
         
         {/* Instructions */}
         <div className="text-center mb-6">
-          <p className="text-gray-700 font-medium">Selecione a cor que corresponde a essa fruta:</p>
+          <p className="text-gray-700 font-medium">Selecione a cor que corresponde ao ícone acima:</p>
         </div>
         
         {/* Color options */}

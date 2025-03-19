@@ -1,102 +1,106 @@
 
-import { Color, gameColors } from "./gameData";
-
-export type CardType = "color" | "text" | "image";
+import { Banana, Grape, Apple, Cherry, Lemon, Orange } from "lucide-react";
 
 export interface MemoryCard {
-  id: string;
-  type: CardType;
-  content: string | Color;
-  isFlipped: boolean;
-  isMatched: boolean;
+  id: number;
+  type: "fruit";
+  matched: boolean;
+  flipped: boolean;
+  content: {
+    name: string;
+    color: string;
+    Icon: typeof Apple;
+  };
 }
 
-export interface MemoryGameLevel {
-  name: string;
-  pairsCount: number;
-  cardTypes: CardType[];
-  description: string;
-}
-
-export const memoryGameLevels: MemoryGameLevel[] = [
+const fruitIcons = [
   {
-    name: "Fácil",
-    pairsCount: 5,  // 5 pairs (10 cards total)
-    cardTypes: ["color", "image"],
-    description: "5 pares de cores e frutas"
+    name: "apple",
+    color: "#FF6B6B", // red
+    Icon: Apple
   },
   {
-    name: "Médio",
-    pairsCount: 5,  // 5 pairs (10 cards total)
-    cardTypes: ["color", "text", "image"],
-    description: "5 pares variados"
+    name: "banana",
+    color: "#FFD93D", // yellow
+    Icon: Banana
   },
   {
-    name: "Difícil",
-    pairsCount: 5,  // 5 pairs (10 cards total)
-    cardTypes: ["color", "text", "image"],
-    description: "5 pares variados"
+    name: "grape",
+    color: "#6A5ACD", // purple
+    Icon: Grape
+  },
+  {
+    name: "cherry",
+    color: "#FF5777", // pink
+    Icon: Cherry
+  },
+  {
+    name: "lemon",
+    color: "#FDFD96", // light yellow
+    Icon: Lemon
+  },
+  {
+    name: "orange",
+    color: "#FFB347", // orange
+    Icon: Orange
   }
 ];
 
-// Generate cards for memory game
-export function generateMemoryCards(level: MemoryGameLevel): MemoryCard[] {
-  const pairs: MemoryCard[] = [];
-  const colors = [...gameColors].sort(() => Math.random() - 0.5).slice(0, level.pairsCount);
+/**
+ * Shuffles an array using the Fisher-Yates algorithm
+ */
+function shuffleArray<T>(array: T[]): T[] {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
+
+/**
+ * Generates a set of cards for the memory game
+ */
+export function generateMemoryCards(numPairs = 5): MemoryCard[] {
+  // Select random fruits for this game
+  const selectedFruits = shuffleArray(fruitIcons).slice(0, numPairs);
   
-  colors.forEach((color, index) => {
-    // For all difficulty levels, always use images for one of the cards
-    let firstCardType: CardType = "image";
-    let secondCardType: CardType = "image";
-    
-    // For easy level: always image pairs
-    if (level.name === "Fácil") {
-      firstCardType = "image";
-      secondCardType = "image";
-    } 
-    // For medium level: image pairs with some variety
-    else if (level.name === "Médio") {
-      if (index % 2 === 0) {
-        firstCardType = "image";
-        secondCardType = "image";
-      } else {
-        firstCardType = "image";
-        secondCardType = "color";
+  // Create pairs of cards
+  const cardPairs = selectedFruits.flatMap((fruit, index) => {
+    // Create two cards with the same fruit (a pair)
+    return [
+      {
+        id: index * 2,
+        type: "fruit" as const,
+        matched: false,
+        flipped: false,
+        content: fruit
+      },
+      {
+        id: index * 2 + 1,
+        type: "fruit" as const,
+        matched: false,
+        flipped: false,
+        content: fruit
       }
-    }
-    // For difficult level: more complex mix
-    else {
-      if (index % 3 === 0) {
-        firstCardType = "image";
-        secondCardType = "color";
-      } else if (index % 3 === 1) {
-        firstCardType = "image";
-        secondCardType = "text";
-      } else {
-        firstCardType = "image";
-        secondCardType = "image";
-      }
-    }
-    
-    // First card
-    pairs.push({
-      id: `card-${index}-1`,
-      type: firstCardType,
-      content: firstCardType === "text" ? color.nameInPortuguese : color,
-      isFlipped: false,
-      isMatched: false
-    });
-    
-    // Second card
-    pairs.push({
-      id: `card-${index}-2`,
-      type: secondCardType,
-      content: secondCardType === "text" ? color.nameInPortuguese : color,
-      isFlipped: false,
-      isMatched: false
-    });
+    ];
   });
   
-  // Shuffle all cards
-  return pairs.sort(() => Math.random() - 0.5);
+  // Shuffle the cards
+  return shuffleArray(cardPairs);
+}
+
+/**
+ * Checks if two cards match
+ */
+export function checkForMatch(card1: MemoryCard, card2: MemoryCard): boolean {
+  if (card1.type !== card2.type) {
+    return false;
+  }
+  
+  if (card1.type === "fruit" && card2.type === "fruit") {
+    return card1.content.name === card2.content.name;
+  }
+  
+  return false;
 }
