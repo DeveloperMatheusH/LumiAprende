@@ -3,13 +3,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon, Smile, Heart } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import ColorCard from "@/components/ColorCard";
 import ImageOptionCard from "@/components/ImageOptionCard";
 import ScoreDisplay from "@/components/ScoreDisplay";
 import VolumeControl from "@/components/VolumeControl";
 import FeedbackAnimation from "@/components/FeedbackAnimation";
 import { generateImageQuestion } from "@/utils/imageGameData";
 import { playSuccessSound, playErrorSound } from "@/utils/gameData";
+import { 
+  Apple, Grape, Banana, Cloud, 
+  Cherry, Flower, Cookie, Citrus
+} from "lucide-react";
 
 const ImageGame: React.FC = () => {
   const [score, setScore] = useState(0);
@@ -27,7 +30,7 @@ const ImageGame: React.FC = () => {
     setSelectedOptionIndex(index);
     const selectedOption = question.options[index];
     
-    if (selectedOption.color.name === question.correctColor.name) {
+    if (selectedOption.name === question.correctImage.color.name) {
       // Correct answer
       setFeedbackState("correct");
       setShowFeedback(true);
@@ -67,6 +70,33 @@ const ImageGame: React.FC = () => {
         setFeedbackState("none");
         setShowFeedback(false);
       }, 1000);
+    }
+  };
+
+  // Function to render fruit icon based on color name
+  const renderFruitIcon = () => {
+    const { correctImage } = question;
+    const iconSize = 72;
+    
+    switch(correctImage.color.name.toLowerCase()) {
+      case "red":
+        return <Apple size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "blue":
+        return <Cloud size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "green":
+        return <Banana size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "yellow":
+        return <Banana size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "purple":
+        return <Grape size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "orange":
+        return <Cherry size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "pink":
+        return <Flower size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      case "brown":
+        return <Cookie size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
+      default:
+        return <Citrus size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
     }
   };
 
@@ -115,25 +145,26 @@ const ImageGame: React.FC = () => {
       
       {/* Main content */}
       <div className="flex-1 flex flex-col items-center justify-center w-full max-w-md">
-        {/* Color card */}
+        {/* Fruit Icon */}
         <div className="mb-4 w-full flex justify-center">
-          <ColorCard 
-            color={question.correctColor} 
-            isRevealing={isRevealing}
-          />
+          <div 
+            className={`w-32 h-32 rounded-xl flex items-center justify-center bg-white shadow-lg ${isRevealing ? 'animate-scale-in' : ''}`}
+          >
+            {renderFruitIcon()}
+          </div>
         </div>
         
         {/* Instructions */}
         <div className="text-center mb-6">
-          <p className="text-gray-700 font-medium">Selecione a imagem que representa essa cor:</p>
+          <p className="text-gray-700 font-medium">Selecione a cor que corresponde a essa fruta:</p>
         </div>
         
-        {/* Image options */}
+        {/* Color options */}
         <div className="w-full grid grid-cols-2 gap-3 px-4">
-          {question.options.map((colorImage, index) => (
+          {question.options.map((color, index) => (
             <ImageOptionCard
-              key={colorImage.color.name}
-              colorImage={colorImage}
+              key={color.name}
+              color={color}
               onClick={() => handleOptionSelect(index)}
               disabled={feedbackState !== "none"}
               feedbackState={

@@ -1,68 +1,36 @@
 
 import React from "react";
-import { ColorImage } from "@/utils/imageGameData";
-import { 
-  Apple, Grape, Banana, Cloud, 
-  Cherry, LucideProps, Flower, Cookie
-} from "lucide-react";
+import { Color } from "@/utils/gameData";
 
 interface ImageOptionCardProps {
-  colorImage: ColorImage;
+  color: Color;
   onClick: () => void;
   disabled: boolean;
   feedbackState: "none" | "correct" | "incorrect";
 }
 
 const ImageOptionCard: React.FC<ImageOptionCardProps> = ({
-  colorImage,
+  color,
   onClick,
   disabled,
   feedbackState
 }) => {
   let cardClasses = `
     relative overflow-hidden rounded-xl shadow-md transition-all duration-300
-    w-full aspect-square mb-2 flex items-center justify-center bg-white
+    w-full aspect-square mb-2 flex items-center justify-center
     ${disabled ? "opacity-70" : "opacity-100"}
     ${feedbackState === "correct" ? "ring-4 ring-game-green" : ""}
     ${feedbackState === "incorrect" ? "ring-4 ring-game-red" : ""}
     hover:scale-[1.02] active:scale-[0.98]
   `;
 
-  // Render the appropriate icon based on the description
-  const renderIcon = () => {
-    const { color, description } = colorImage;
-    const iconSize = 48;
-    
-    switch(color.name.toLowerCase()) {
-      case "red":
-        return <Apple size={iconSize} color={color.value} />;
-      case "blue":
-        return <Cloud size={iconSize} color={color.value} />;
-      case "green":
-        return <Banana size={iconSize} color={color.value} strokeWidth={1.5} />;
-      case "yellow":
-        return <Banana size={iconSize} color={color.value} />;
-      case "purple":
-        return <Grape size={iconSize} color={color.value} />;
-      case "orange":
-        return <Cherry size={iconSize} color={color.value} />;
-      case "pink":
-        return <Flower size={iconSize} color={color.value} />;
-      case "brown":
-        return <Cookie size={iconSize} color={color.value} />;
-      default:
-        return <Apple size={iconSize} color={color.value} />;
-    }
-  };
-
   return (
     <button
       className={cardClasses}
       onClick={onClick}
       disabled={disabled}
-    >
-      {renderIcon()}
-      
+      style={{ backgroundColor: color.value }}
+    >      
       {/* Feedback overlay */}
       {feedbackState === "correct" && (
         <div className="absolute inset-0 bg-green-500/30 flex items-center justify-center">

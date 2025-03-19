@@ -50,32 +50,35 @@ export const colorImages: ColorImage[] = [
   }
 ];
 
-// Generate a question with one correct color and options
+// Generate a question with one correct fruit image and color options
 export function generateImageQuestion(): {
-  correctColor: Color;
-  options: ColorImage[];
+  correctImage: ColorImage;
+  options: Color[];
 } {
-  // Select a random color as the correct answer
+  // Select a random fruit as the correct answer
   const correctIndex = Math.floor(Math.random() * colorImages.length);
-  const correctColorImage = colorImages[correctIndex];
+  const correctImage = colorImages[correctIndex];
   
-  // Create a copy of the images array excluding the correct color
-  const remainingImages = colorImages.filter(img => img.color.name !== correctColorImage.color.name);
+  // Create a copy of the colors array
+  const allColors = colorImages.map(img => img.color);
+  
+  // Remove the correct color
+  const remainingColors = allColors.filter(color => color.name !== correctImage.color.name);
   
   // Shuffle the remaining colors
-  const shuffledImages = remainingImages.sort(() => Math.random() - 0.5);
+  const shuffledColors = remainingColors.sort(() => Math.random() - 0.5);
   
-  // Take the first three images from the shuffled array
-  const incorrectOptions = shuffledImages.slice(0, 3);
+  // Take the first three colors from the shuffled array
+  const incorrectOptions = shuffledColors.slice(0, 3);
   
-  // Combine correct color image with incorrect options
-  const allOptions = [...incorrectOptions, correctColorImage];
+  // Combine correct color with incorrect options
+  const allOptions = [...incorrectOptions, correctImage.color];
   
   // Shuffle the options so the correct answer isn't always in the same position
   const shuffledOptions = allOptions.sort(() => Math.random() - 0.5);
   
   return {
-    correctColor: correctColorImage.color,
+    correctImage: correctImage,
     options: shuffledOptions
   };
 }
