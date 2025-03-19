@@ -21,19 +21,19 @@ export interface MemoryGameLevel {
 export const memoryGameLevels: MemoryGameLevel[] = [
   {
     name: "Fácil",
-    pairsCount: 5,  // Changed to 5 pairs (10 cards total)
+    pairsCount: 5,  // 5 pairs (10 cards total)
     cardTypes: ["color", "image"],
     description: "5 pares de cores e frutas"
   },
   {
     name: "Médio",
-    pairsCount: 5,  // Changed to 5 pairs (10 cards total)
+    pairsCount: 5,  // 5 pairs (10 cards total)
     cardTypes: ["color", "text", "image"],
     description: "5 pares variados"
   },
   {
     name: "Difícil",
-    pairsCount: 5,  // Changed to 5 pairs (10 cards total)
+    pairsCount: 5,  // 5 pairs (10 cards total)
     cardTypes: ["color", "text", "image"],
     description: "5 pares variados"
   }

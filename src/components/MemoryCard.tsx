@@ -24,7 +24,7 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
     ? (card.content as Color).nameInPortuguese 
     : typeof card.content === "string" 
       ? card.content 
-      : "";
+      : (card.content as Color).nameInPortuguese;
   
   const frontClasses = cn(
     "absolute inset-0 flex items-center justify-center rounded-xl shadow-md",
@@ -41,9 +41,16 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
   );
 
   // Function to render fruit icon based on color name
-  const renderFruitIcon = (name: string, size = 48) => {
+  const renderFruitIcon = (color: Color | string, size = 48) => {
+    // Get the color name for comparison
+    const colorNameForIcon = typeof color === 'string' 
+      ? color 
+      : color.nameInPortuguese;
+    
     // Safety check to ensure we have a string before calling toLowerCase
-    const safeColorName = typeof name === 'string' ? name.toLowerCase() : '';
+    const safeColorName = typeof colorNameForIcon === 'string' 
+      ? colorNameForIcon.toLowerCase() 
+      : '';
     
     switch(safeColorName) {
       case "amarelo":
@@ -89,10 +96,10 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
           backgroundColor: "white" // Ensure white background for all cards
         }}
       >
-        {card.type === "color" && (
+        {card.type === "color" && typeof card.content !== "string" && (
           <div 
             className="w-full h-full rounded-xl flex items-center justify-center"
-            style={{ backgroundColor: colorValue }}
+            style={{ backgroundColor: (card.content as Color).value }}
           />
         )}
         
@@ -104,7 +111,7 @@ const MemoryCard: React.FC<MemoryCardProps> = ({
         
         {card.type === "image" && (
           <div className="w-full h-full rounded-xl bg-white flex items-center justify-center">
-            {renderFruitIcon(colorName)}
+            {renderFruitIcon(card.content)}
           </div>
         )}
       </div>
