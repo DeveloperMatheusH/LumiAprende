@@ -8,11 +8,8 @@ Este projeto surge com o propósito de auxiliar crianças e adolescentes no apre
 
 ### Este Projeto foi Utilizado as Seguintes Linguagens:
 
-- Vite
 - TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- CSS
 
 ### Recursos Adicionais:
 
