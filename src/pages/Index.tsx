@@ -13,7 +13,7 @@ const Index = () => {
           </div>
         </div>
 
-        <h1 className="font-dancing text-4xl sm:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+        <h1 className="font-dancing text-4xl sm:text-5xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
           LumiAprende
         </h1>
         
