@@ -19,7 +19,7 @@ const Index = () => {
         
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl">
           <p className="text-gray-600 mb-6">
-            Aprenda a identificar cores de forma divertida e interativa!
+            Aprender com diversão é muito melhor!
           </p>
           
           <div className="flex flex-wrap justify-center gap-3 mb-6">
@@ -44,7 +44,7 @@ const Index = () => {
         </div>
         
         <p className="text-sm text-gray-500">
-          Toque nas cores corretas e ganhe pontos!
+          Aprenda de forma interativa com jogos divertidos!
         </p>
       </div>
     </div>
