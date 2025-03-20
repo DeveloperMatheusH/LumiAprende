@@ -13,6 +13,17 @@ export interface MemoryCard {
   };
 }
 
+export interface MemoryGameLevel {
+  name: string;
+  pairsCount: number;
+}
+
+export const memoryGameLevels: MemoryGameLevel[] = [
+  { name: "Fácil", pairsCount: 4 },
+  { name: "Médio", pairsCount: 5 },
+  { name: "Difícil", pairsCount: 6 }
+];
+
 const fruitIcons = [
   {
     name: "apple",

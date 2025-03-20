@@ -44,7 +44,7 @@ const MemoryGame: React.FC = () => {
   }, [gameActive, gameComplete]);
 
   const startNewGame = () => {
-    const newCards = generateMemoryCards(currentLevel);
+    const newCards = generateMemoryCards(currentLevel.pairsCount);
     setCards(newCards);
     setFlippedCards([]);
     setMatchedPairs(0);
@@ -59,7 +59,7 @@ const MemoryGame: React.FC = () => {
     
     // Flip the card
     const updatedCards = cards.map(card => 
-      card.id === clickedCard.id ? { ...card, isFlipped: true } : card
+      card.id === clickedCard.id ? { ...card, flipped: true } : card
     );
     setCards(updatedCards);
     
@@ -73,22 +73,8 @@ const MemoryGame: React.FC = () => {
       
       const [firstCard, secondCard] = newFlippedCards;
       
-      // Check for a match
-      let isMatch = false;
-      
-      if (typeof firstCard.content === 'object' && typeof secondCard.content === 'object') {
-        // Both are color objects
-        isMatch = firstCard.content.name === secondCard.content.name;
-      } else if (typeof firstCard.content === 'string' && typeof secondCard.content === 'object') {
-        // First is text, second is color
-        isMatch = secondCard.content.nameInPortuguese === firstCard.content;
-      } else if (typeof firstCard.content === 'object' && typeof secondCard.content === 'string') {
-        // First is color, second is text
-        isMatch = firstCard.content.nameInPortuguese === secondCard.content;
-      } else {
-        // Both are strings
-        isMatch = firstCard.content === secondCard.content;
-      }
+      // Check for a match - both cards will be of type "fruit"
+      const isMatch = firstCard.content.name === secondCard.content.name;
       
       if (isMatch) {
         // It's a match!
@@ -96,7 +82,7 @@ const MemoryGame: React.FC = () => {
           // Mark cards as matched
           const matchedCards = updatedCards.map(card => 
             card.id === firstCard.id || card.id === secondCard.id
-              ? { ...card, isMatched: true }
+              ? { ...card, matched: true }
               : card
           );
           setCards(matchedCards);
@@ -146,7 +132,7 @@ const MemoryGame: React.FC = () => {
           // Flip cards back
           const resetCards = updatedCards.map(card => 
             card.id === firstCard.id || card.id === secondCard.id
-              ? { ...card, isFlipped: false }
+              ? { ...card, flipped: false }
               : card
           );
           setCards(resetCards);
@@ -248,7 +234,7 @@ const MemoryGame: React.FC = () => {
             <MemoryCard
               card={card}
               onClick={() => handleCardClick(card)}
-              disabled={card.isFlipped || card.isMatched || flippedCards.length === 2}
+              disabled={card.flipped || card.matched || flippedCards.length === 2}
             />
           </div>
         ))}
