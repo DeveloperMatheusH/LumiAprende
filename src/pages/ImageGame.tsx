@@ -82,8 +82,6 @@ const ImageGame: React.FC = () => {
         return <Apple size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
       case "blue":
         return <Cloud size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
-      case "green":
-        return <Banana size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
       case "yellow":
         return <Banana size={iconSize} color={correctImage.color.value} strokeWidth={1.5} />;
       case "purple":
