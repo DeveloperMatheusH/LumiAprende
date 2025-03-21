@@ -7,13 +7,13 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4">
       <div className="text-center max-w-md">
-        <div className="mb-6 flex justify-center">
+        <div className="mb-8 flex justify-center">
           <div className="w-20 h-20 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg float-animation">
             <LightbulbIcon className="h-10 w-10 text-white" />
           </div>
         </div>
 
-        <h1 className="font-pacifico text-4xl sm:text-5xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+        <h1 className="font-pacifico text-4xl sm:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
           LumiAprende
         </h1>
         
