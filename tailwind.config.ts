@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'dancing': ['"Dancing Script"', 'cursive'],
+				'pacifico': ['Pacifico', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
