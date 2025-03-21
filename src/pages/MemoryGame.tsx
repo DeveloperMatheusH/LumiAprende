@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeftIcon, Clock, Smile, Heart, RotateCw } from "lucide-react";
+import { ArrowLeftIcon, Clock, Smile, Heart, RotateCw, Trophy, Star } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import MemoryCard from "@/components/MemoryCard";
 import ScoreDisplay from "@/components/ScoreDisplay";
@@ -9,6 +8,7 @@ import VolumeControl from "@/components/VolumeControl";
 import FeedbackAnimation from "@/components/FeedbackAnimation";
 import { generateMemoryCards, memoryGameLevels, MemoryCard as MemoryCardType } from "@/utils/memoryGameData";
 import { playSuccessSound, playErrorSound } from "@/utils/gameData";
+import { useToast } from "@/hooks/use-toast";
 
 const MemoryGame: React.FC = () => {
   const [score, setScore] = useState(0);
@@ -21,9 +21,11 @@ const MemoryGame: React.FC = () => {
   const [feedbackState, setFeedbackState] = useState<"none" | "correct" | "incorrect">("none");
   const [showFeedback, setShowFeedback] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
+  const [showGameComplete, setShowGameComplete] = useState(false); // New state for game completion message
   const [achievementPoints, setAchievementPoints] = useState(0);
   const [timer, setTimer] = useState(0);
   const [gameActive, setGameActive] = useState(false);
+  const { toast } = useToast();
 
   // Initialize the game
   useEffect(() => {
@@ -42,6 +44,24 @@ const MemoryGame: React.FC = () => {
     
     return () => clearInterval(interval);
   }, [gameActive, gameComplete]);
+
+  // Auto-restart game after completion
+  useEffect(() => {
+    let restartTimeout: NodeJS.Timeout;
+    
+    if (gameComplete) {
+      // Show game complete dialog
+      setShowGameComplete(true);
+      
+      // Set timeout to restart the game after 5 seconds
+      restartTimeout = setTimeout(() => {
+        setShowGameComplete(false);
+        startNewGame();
+      }, 5000);
+    }
+    
+    return () => clearTimeout(restartTimeout);
+  }, [gameComplete]);
 
   const startNewGame = () => {
     const newCards = generateMemoryCards(currentLevel.pairsCount);
@@ -246,7 +266,28 @@ const MemoryGame: React.FC = () => {
         visible={showFeedback}
       />
 
-      {/* Congratulations Dialog */}
+      {/* Game Complete Dialog */}
+      <Dialog open={showGameComplete} onOpenChange={setShowGameComplete}>
+        <DialogContent className="bg-white rounded-xl p-6 max-w-md mx-auto text-center border-4 border-purple-300">
+          <DialogTitle className="text-2xl font-bold text-purple-700 mb-4 flex items-center justify-center">
+            Parabéns! <Trophy className="inline-block ml-2 text-yellow-500" size={28} />
+          </DialogTitle>
+          <div className="py-4 text-lg text-gray-700">
+            <p>Parabéns pequeno(a) Lumi, você completou o jogo!</p>
+            <p className="mt-2">Pronto para mais uma rodada?</p>
+            <div className="flex items-center justify-center mt-3 space-x-2">
+              <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
+              <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
+              <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
+            </div>
+          </div>
+          <div className="text-sm text-gray-500 mt-2">
+            Reiniciando em 5 segundos...
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* Congratulations Dialog for achievement points */}
       <Dialog open={showCongratulations} onOpenChange={setShowCongratulations}>
         <DialogContent className="bg-white rounded-xl p-6 max-w-md mx-auto text-center border-4 border-purple-300">
           <DialogTitle className="text-2xl font-bold text-purple-700 mb-4">
