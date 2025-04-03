@@ -5,7 +5,7 @@ import { LightbulbIcon } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-blue-50 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#E0EAF6] to-blue-50 px-4">
       <div className="text-center max-w-md">
         <div className="mb-8 flex justify-center">
           <div className="w-20 h-20 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg float-animation">
@@ -18,7 +18,7 @@ const Index = () => {
         </h1>
         
         <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-8 shadow-xl">
-          <p className="text-gray-600 mb-6">
+          <p className="font-bubblegum text-gray-600 mb-6">
             Aprender com diversão é muito melhor!
           </p>
           
@@ -43,7 +43,7 @@ const Index = () => {
           </Link>
         </div>
         
-        <p className="text-sm text-gray-500">
+        <p className="font-bubblegum text-sm text-gray-500">
           Aprenda de forma interativa com jogos divertidos!
         </p>
       </div>

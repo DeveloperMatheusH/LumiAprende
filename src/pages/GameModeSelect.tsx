@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const GameModeSelect = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between bg-game-lightgray px-4 py-8 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-between bg-[#E0EAF6] px-4 py-8 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-blue-100 opacity-50"></div>
