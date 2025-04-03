@@ -23,7 +23,7 @@ const GameModeSelect = () => {
       </Link>
       
       <div className="w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center mb-8 text-purple-700">Escolha um Modo de Jogo</h1>
+        <h1 className="font-bubblegum text-3xl text-center mb-8 text-purple-700">Escolha um Modo de Jogo</h1>
         
         <div className="grid grid-cols-1 gap-6">
           <Link to="/game">
@@ -34,8 +34,8 @@ const GameModeSelect = () => {
                     <Palette className="h-8 w-8 text-blue-600" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-800">Pareamento de Cores</h2>
-                    <p className="text-gray-600">Associe cores aos seus nomes</p>
+                    <h2 className="font-bubblegum text-xl font-bold text-gray-800">Pareamento de Cores</h2>
+                    <p className="font-bubblegum text-gray-600">Associe cores aos seus nomes</p>
                   </div>
                 </div>
               </CardContent>
@@ -50,8 +50,8 @@ const GameModeSelect = () => {
                     <Image className="h-8 w-8 text-green-600" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-800">Associação de Imagens</h2>
-                    <p className="text-gray-600">Associe cores a objetos</p>
+                    <h2 className="font-bubblegum text-xl font-bold text-gray-800">Associação de Imagens</h2>
+                    <p className="font-bubblegum text-gray-600">Associe cores a objetos</p>
                   </div>
                 </div>
               </CardContent>
@@ -66,8 +66,8 @@ const GameModeSelect = () => {
                     <Brain className="h-8 w-8 text-purple-600" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-gray-800">Jogo da Memória</h2>
-                    <p className="text-gray-600">Encontre os pares correspondentes</p>
+                    <h2 className="font-bubblegum text-xl font-bold text-gray-800">Jogo da Memória</h2>
+                    <p className="font-bubblegum text-gray-600">Encontre os pares correspondentes</p>
                   </div>
                 </div>
               </CardContent>
