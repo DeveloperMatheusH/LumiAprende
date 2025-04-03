@@ -21,6 +21,7 @@ export default {
 			fontFamily: {
 				'dancing': ['"Dancing Script"', 'cursive'],
 				'pacifico': ['Pacifico', 'cursive'],
+				'bubblegum': ['"Bubblegum Sans"', 'cursive'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
