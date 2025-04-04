@@ -5,15 +5,16 @@ interface PuzzleBoardProps {
   children: React.ReactNode;
   onPieceOver: (index: number) => void;
   image: string;
+  gridSize: number;
 }
 
 const PuzzleBoard = forwardRef<HTMLDivElement, PuzzleBoardProps>(
-  ({ children, onPieceOver, image }, ref) => {
-    // We create placeholders based on a 2x2 or 2x3 grid depending on difficulty
-    const gridSize = Math.random() > 0.5 ? 2 : 3;
+  ({ children, onPieceOver, image, gridSize }, ref) => {
+    // Create placeholders based on the provided grid size
     const placeholders = [];
+    const numPieces = gridSize === 2 ? 4 : 6;
 
-    for (let i = 0; i < (gridSize === 2 ? 4 : 6); i++) {
+    for (let i = 0; i < numPieces; i++) {
       placeholders.push(
         <div
           key={`placeholder-${i}`}

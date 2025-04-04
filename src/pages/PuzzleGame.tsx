@@ -13,18 +13,24 @@ const PuzzleGame = () => {
   const [gameComplete, setGameComplete] = useState(false);
   const [currentPieceIndex, setCurrentPieceIndex] = useState<number | null>(null);
   const boardRef = useRef<HTMLDivElement>(null);
-  const [currentImage, setCurrentImage] = useState("dinosaur");
+  const [currentImage, setCurrentImage] = useState("lion");
+  const [gridSize, setGridSize] = useState(2); // Default to 2x2 grid (4 pieces)
+  
+  // Available images
+  const availableImages = ["lion", "tiger", "giraffe", "dinosaur"];
   
   // Generate a new puzzle
   useEffect(() => {
+    console.log("Generating new puzzle with image:", currentImage);
     // Show the complete image for 3 seconds before starting the game
     const timer = setTimeout(() => {
       setShowCompleteImage(false);
-      setPuzzle(generatePuzzle(currentImage));
+      // Generate puzzle with specified grid size
+      setPuzzle(generatePuzzle(currentImage, gridSize));
     }, 3000);
     
     return () => clearTimeout(timer);
-  }, [currentImage]);
+  }, [currentImage, gridSize]);
   
   // Check if the game is complete
   useEffect(() => {
@@ -78,15 +84,20 @@ const PuzzleGame = () => {
   };
   
   const handleDrag = (dx: number, dy: number) => {
-    if (currentPieceIndex === null) return;
+    if (currentPieceIndex === null || !boardRef.current) return;
     
     const updatedPuzzle = [...puzzle];
     const piece = updatedPuzzle[currentPieceIndex];
     
+    // Convert pixel movement to percentage of board width/height
+    const boardRect = boardRef.current.getBoundingClientRect();
+    const dxPercent = (dx / boardRect.width) * 100;
+    const dyPercent = (dy / boardRect.height) * 100;
+    
     updatedPuzzle[currentPieceIndex] = {
       ...piece,
-      x: piece.x + dx,
-      y: piece.y + dy
+      x: piece.x + dxPercent,
+      y: piece.y + dyPercent
     };
     
     setPuzzle(updatedPuzzle);
@@ -119,10 +130,12 @@ const PuzzleGame = () => {
     setShowCompleteImage(true);
     setPuzzle([]);
     
-    // Change the image for the next game
-    const images = ["dinosaur", "elephant", "lion", "tiger", "giraffe"];
-    const nextImageIndex = Math.floor(Math.random() * images.length);
-    setCurrentImage(images[nextImageIndex]);
+    // Change grid size randomly between 2x2 and 2x3
+    setGridSize(Math.random() > 0.5 ? 2 : 3);
+    
+    // Change the image for the next game - randomly select from available images
+    const nextImageIndex = Math.floor(Math.random() * availableImages.length);
+    setCurrentImage(availableImages[nextImageIndex]);
   };
   
   return (
@@ -193,6 +206,7 @@ const PuzzleGame = () => {
               ref={boardRef}
               onPieceOver={handlePieceOver}
               image={currentImage}
+              gridSize={gridSize}
             >
               {puzzle.map((piece, index) => (
                 <PuzzlePieceComponent

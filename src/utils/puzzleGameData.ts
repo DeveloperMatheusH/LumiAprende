@@ -35,9 +35,8 @@ function shuffleArray<T>(array: T[]): T[] {
 /**
  * Generates a puzzle with 4 to 6 pieces based on the selected image
  */
-export function generatePuzzle(imageName: string): PuzzlePiece[] {
-  // Determine grid size (2x2 for 4 pieces or 2x3 for 6 pieces)
-  const gridSize = Math.random() > 0.5 ? 2 : 3;
+export function generatePuzzle(imageName: string, gridSize: number = 2): PuzzlePiece[] {
+  // Determine number of pieces based on grid size (2x2 for 4 pieces or 2x3 for 6 pieces)
   const numPieces = gridSize === 2 ? 4 : 6;
   
   const pieces: PuzzlePiece[] = [];
@@ -59,10 +58,28 @@ export function generatePuzzle(imageName: string): PuzzlePiece[] {
     const bgPositionX = (col * (100 / (gridSize - 1))) || 0;
     const bgPositionY = (row * (100 / ((gridSize === 2 ? 2 : 3) - 1))) || 0;
     
-    // Generate random initial position (outside the board)
-    // We want the pieces to be in the bottom part of the screen
-    const randomX = Math.random() * 80; // 0-80% of container width
-    const randomY = 110 + Math.random() * 30; // 110-140% of container height (below the board)
+    // Generate random initial position around the board
+    // Distribute pieces more evenly around the board
+    let randomX, randomY;
+    
+    // For positioning pieces around the board
+    if (i % 4 === 0) {
+      // Left side
+      randomX = -50 + Math.random() * 30;
+      randomY = 20 + Math.random() * 60;
+    } else if (i % 4 === 1) {
+      // Right side
+      randomX = 120 + Math.random() * 30;
+      randomY = 20 + Math.random() * 60;
+    } else if (i % 4 === 2) {
+      // Top
+      randomX = 20 + Math.random() * 60;
+      randomY = -50 + Math.random() * 30;
+    } else {
+      // Bottom
+      randomX = 20 + Math.random() * 60;
+      randomY = 120 + Math.random() * 30;
+    }
     
     pieces.push({
       id: i,
@@ -86,8 +103,7 @@ export function generatePuzzle(imageName: string): PuzzlePiece[] {
     });
   }
   
-  // Shuffle the pieces
-  return shuffleArray(pieces);
+  return pieces;
 }
 
 /**

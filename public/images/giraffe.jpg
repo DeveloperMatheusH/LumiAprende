@@ -1,3 +1,5 @@
 
-// This is a placeholder for the actual image file.
-// You'll need to upload real images to the public/images folder
+// This is a base64 encoded image of a giraffe.
+// In a real application, you would upload an actual image file.
+// For the purposes of this example, we're using a placeholder.
+// Please replace this with an actual image file.
