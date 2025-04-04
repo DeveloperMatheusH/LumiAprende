@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeftIcon, Palette, Image, Brain } from "lucide-react";
+import { ArrowLeftIcon, Palette, Image, Brain, Puzzle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const GameModeSelect = () => {
@@ -68,6 +68,22 @@ const GameModeSelect = () => {
                   <div>
                     <h2 className="font-bubblegum text-xl font-bold text-gray-800">Jogo da Memória</h2>
                     <p className="font-bubblegum text-gray-600">Encontre os pares correspondentes</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+          
+          <Link to="/puzzle-game">
+            <Card className="hover:shadow-lg transition-all hover:-translate-y-1 active:translate-y-0 bg-white/80 backdrop-blur-sm">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4">
+                  <div className="bg-yellow-100 p-3 rounded-full">
+                    <Puzzle className="h-8 w-8 text-yellow-600" />
+                  </div>
+                  <div>
+                    <h2 className="font-bubblegum text-xl font-bold text-gray-800">Quebra-Cabeça</h2>
+                    <p className="font-bubblegum text-gray-600">Monte imagens com 4 a 6 peças</p>
                   </div>
                 </div>
               </CardContent>

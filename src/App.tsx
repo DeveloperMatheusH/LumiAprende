@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Game from "./pages/Game";
 import ImageGame from "./pages/ImageGame";
 import MemoryGame from "./pages/MemoryGame";
+import PuzzleGame from "./pages/PuzzleGame";
 import GameModeSelect from "./pages/GameModeSelect";
 import NotFound from "./pages/NotFound";
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/game" element={<Game />} />
           <Route path="/image-game" element={<ImageGame />} />
           <Route path="/memory-game" element={<MemoryGame />} />
+          <Route path="/puzzle-game" element={<PuzzleGame />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
