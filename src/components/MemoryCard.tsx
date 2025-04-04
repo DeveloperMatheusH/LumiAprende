@@ -1,10 +1,7 @@
-
 import React from "react";
 import { MemoryCard as MemoryCardType } from "@/utils/memoryGameData";
 import { cn } from "@/lib/utils";
-import { 
-  Banana, Apple, Grape, Cherry, Flower
-} from "lucide-react";
+import { Apple } from "lucide-react";
 
 interface MemoryCardProps {
   card: MemoryCardType;

@@ -1,5 +1,4 @@
-
-import { Banana, Grape, Apple, Cherry, Lemon, Orange, Strawberry, Watermelon } from "lucide-react";
+import { Banana, Grape, Apple, Cherry, Coffee, Egg, Pizza, Fish, Salad, Soup, Sandwich, Cake } from "lucide-react";
 
 export interface MemoryCard {
   id: number;
@@ -24,7 +23,7 @@ export const memoryGameLevels: MemoryGameLevel[] = [
   { name: "Difícil", pairsCount: 6 }
 ];
 
-// Cria múltiplos conjuntos de ícones de frutas para rotacionar
+// Cria múltiplos conjuntos de ícones de frutas e alimentos para rotacionar
 const fruitIconSets = [
   // Conjunto 1 - Frutas originais
   [
@@ -49,50 +48,50 @@ const fruitIconSets = [
       Icon: Cherry
     }
   ],
-  // Conjunto 2 - Frutas cítricas
+  // Conjunto 2 - Bebidas e comidas
   [
     {
-      name: "lemon",
-      color: "#F4E76E", // yellow
-      Icon: Lemon
+      name: "coffee",
+      color: "#6F4E37", // brown
+      Icon: Coffee
     },
     {
-      name: "orange",
+      name: "egg",
+      color: "#F4F0CB", // cream
+      Icon: Egg
+    },
+    {
+      name: "pizza",
       color: "#FF9933", // orange
-      Icon: Orange
+      Icon: Pizza
     },
     {
-      name: "strawberry",
-      color: "#FF3366", // red
-      Icon: Strawberry
-    },
-    {
-      name: "watermelon",
-      color: "#4CAF50", // green
-      Icon: Watermelon
+      name: "fish",
+      color: "#4169E1", // blue
+      Icon: Fish
     }
   ],
-  // Conjunto 3 - Mistura
+  // Conjunto 3 - Mais alimentos
   [
     {
-      name: "apple",
-      color: "#FF6B6B", // red
-      Icon: Apple
-    },
-    {
-      name: "orange",
-      color: "#FF9933", // orange
-      Icon: Orange
-    },
-    {
-      name: "grape",
-      color: "#6A5ACD", // purple
-      Icon: Grape
-    },
-    {
-      name: "watermelon",
+      name: "salad",
       color: "#4CAF50", // green
-      Icon: Watermelon
+      Icon: Salad
+    },
+    {
+      name: "soup",
+      color: "#E67E22", // orange-brown
+      Icon: Soup
+    },
+    {
+      name: "sandwich",
+      color: "#D2B48C", // tan
+      Icon: Sandwich
+    },
+    {
+      name: "cake",
+      color: "#FF69B4", // pink
+      Icon: Cake
     }
   ]
 ];
