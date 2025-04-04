@@ -1,12 +1,19 @@
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeftIcon, Clock, Smile, Heart, RotateCw, Trophy, Star } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import MemoryCard from "@/components/MemoryCard";
 import ScoreDisplay from "@/components/ScoreDisplay";
 import VolumeControl from "@/components/VolumeControl";
 import FeedbackAnimation from "@/components/FeedbackAnimation";
-import { generateMemoryCards, memoryGameLevels, MemoryCard as MemoryCardType } from "@/utils/memoryGameData";
+import { 
+  generateMemoryCards, 
+  memoryGameLevels, 
+  MemoryCard as MemoryCardType, 
+  rotateToNextIconSet,
+  getCurrentIconSet 
+} from "@/utils/memoryGameData";
 import { playSuccessSound, playErrorSound } from "@/utils/gameData";
 import { useToast } from "@/hooks/use-toast";
 
@@ -21,11 +28,29 @@ const MemoryGame: React.FC = () => {
   const [feedbackState, setFeedbackState] = useState<"none" | "correct" | "incorrect">("none");
   const [showFeedback, setShowFeedback] = useState(false);
   const [showCongratulations, setShowCongratulations] = useState(false);
-  const [showGameComplete, setShowGameComplete] = useState(false); // New state for game completion message
+  const [showGameComplete, setShowGameComplete] = useState(false);
   const [achievementPoints, setAchievementPoints] = useState(0);
   const [timer, setTimer] = useState(0);
   const [gameActive, setGameActive] = useState(false);
+  const [currentIconSetName, setCurrentIconSetName] = useState("");
   const { toast } = useToast();
+
+  // Inicializa o nome do conjunto de ícones atual
+  useEffect(() => {
+    updateCurrentIconSetName();
+  }, []);
+
+  // Atualiza o nome do conjunto de ícones atual
+  const updateCurrentIconSetName = () => {
+    const iconSet = getCurrentIconSet();
+    if (iconSet && iconSet.length > 0) {
+      // Gera um nome baseado nas frutas do conjunto atual
+      const fruitNames = iconSet.map(fruit => 
+        fruit.name.charAt(0).toUpperCase() + fruit.name.slice(1)
+      ).join(", ");
+      setCurrentIconSetName(fruitNames);
+    }
+  };
 
   // Initialize the game
   useEffect(() => {
@@ -50,6 +75,10 @@ const MemoryGame: React.FC = () => {
     let restartTimeout: NodeJS.Timeout;
     
     if (gameComplete) {
+      // Rotaciona para o próximo conjunto de ícones
+      rotateToNextIconSet();
+      updateCurrentIconSetName();
+      
       // Show game complete dialog
       setShowGameComplete(true);
       
@@ -235,6 +264,11 @@ const MemoryGame: React.FC = () => {
         </div>
       </div>
       
+      {/* Current Fruit Set display */}
+      <div className="glass-card px-3 py-1 rounded-full mb-2 text-sm text-center">
+        <span>Conjunto atual: {currentIconSetName}</span>
+      </div>
+      
       {/* Restart button */}
       <button 
         onClick={startNewGame}
@@ -269,12 +303,15 @@ const MemoryGame: React.FC = () => {
       {/* Game Complete Dialog */}
       <Dialog open={showGameComplete} onOpenChange={setShowGameComplete}>
         <DialogContent className="bg-white rounded-xl p-6 max-w-md mx-auto text-center border-4 border-purple-300">
-          <DialogTitle className="text-2xl font-bold text-purple-700 mb-4 flex items-center justify-center">
+          <DialogTitle className="text-2xl font-bold text-purple-700 mb-2 flex items-center justify-center">
             Parabéns! <Trophy className="inline-block ml-2 text-yellow-500" size={28} />
           </DialogTitle>
+          <DialogDescription className="text-gray-600">
+            Novas frutas foram desbloqueadas para a próxima partida!
+          </DialogDescription>
           <div className="py-4 text-lg text-gray-700">
             <p>Parabéns pequeno(a) Lumi, você completou o jogo!</p>
-            <p className="mt-2">Pronto para mais uma rodada?</p>
+            <p className="mt-2">Pronto para mais uma rodada com novas frutas?</p>
             <div className="flex items-center justify-center mt-3 space-x-2">
               <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
               <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
