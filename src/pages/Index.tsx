@@ -5,7 +5,7 @@ import { LightbulbIcon } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#E0EAF6] to-blue-50 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#B8D1EF] to-blue-200 px-4">
       <div className="text-center max-w-md">
         <div className="mb-8 flex justify-center">
           <div className="w-20 h-20 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg float-animation">
