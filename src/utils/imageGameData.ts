@@ -34,7 +34,7 @@ export const colorImages: ColorImage[] = [
     description: "Uvas roxas"
   },
   {
-    color: { name: "Orange", value: "#FF7043", nameInPortuguese: "Laranja" },
+    color: { name: "Orange", value: "#FF6600", nameInPortuguese: "Laranja" },
     imageUrl: "icon-cherry",
     description: "Cereja laranja"
   },

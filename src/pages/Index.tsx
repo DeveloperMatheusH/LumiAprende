@@ -38,7 +38,7 @@ const Index = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-3 mb-6">
-            {["#FF5252", "#4285F4", "#0F9D58", "#FFCB3E", "#7E57C2", "#FF7043"].map((color) => (
+            {["#FF5252", "#4285F4", "#0F9D58", "#FFCB3E", "#7E57C2", "#FF6600"].map((color) => (
               <div 
                 key={color}
                 className="w-8 h-8 rounded-full transition-transform duration-300 hover:scale-110"

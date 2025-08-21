@@ -11,7 +11,7 @@ export const gameColors: Color[] = [
   { name: "Green", value: "#0F9D58", nameInPortuguese: "Verde" },
   { name: "Yellow", value: "#FFCB3E", nameInPortuguese: "Amarelo" },
   { name: "Purple", value: "#7E57C2", nameInPortuguese: "Roxo" },
-  { name: "Orange", value: "#FF7043", nameInPortuguese: "Laranja" },
+  { name: "Orange", value: "#FF6600", nameInPortuguese: "Laranja" },
   { name: "Pink", value: "#EC407A", nameInPortuguese: "Rosa" },
   { name: "Cyan", value: "#00BCD4", nameInPortuguese: "Ciano" },
   { name: "Brown", value: "#795548", nameInPortuguese: "Marrom" },
