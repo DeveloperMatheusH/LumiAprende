@@ -246,7 +246,9 @@ const MemoryGame: React.FC = () => {
             disabled={gameActive}
           >
             {memoryGameLevels.map(level => (
-              <option key={level.name} value={level.name}>{level.name}</option>
+              <option key={level.name} value={level.name}>
+                {level.name === "Fácil" ? level.pairsCount + " pares" : level.name}
+              </option>
             ))}
           </select>
           
