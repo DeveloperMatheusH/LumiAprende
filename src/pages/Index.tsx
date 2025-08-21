@@ -1,11 +1,26 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { LightbulbIcon } from "lucide-react";
+import { LightbulbIcon, Star } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#B8D1EF] to-blue-200 px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#E6F3FF] to-[#CCE7FF] px-4 relative overflow-hidden">
+      {/* Scattered Stars Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <Star
+            key={i}
+            className="absolute text-yellow-400 opacity-40"
+            size={Math.random() * 16 + 12}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              transform: `rotate(${Math.random() * 360}deg)`,
+            }}
+          />
+        ))}
+      </div>
       <div className="text-center max-w-md">
         <div className="mb-8 flex justify-center">
           <div className="w-20 h-20 rounded-full bg-yellow-400 flex items-center justify-center shadow-lg float-animation">
