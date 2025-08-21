@@ -28,7 +28,7 @@ const fruitIconSets = [
   // Conjunto 1 - Frutas originais
   [
     {
-      name: "apple",
+      name: "maçã",
       color: "#FF6B6B", // red
       Icon: Apple
     },
@@ -38,12 +38,12 @@ const fruitIconSets = [
       Icon: Banana
     },
     {
-      name: "grape",
+      name: "uva",
       color: "#6A5ACD", // purple
       Icon: Grape
     },
     {
-      name: "cherry",
+      name: "cereja",
       color: "#FF5777", // pink
       Icon: Cherry
     }
@@ -51,12 +51,12 @@ const fruitIconSets = [
   // Conjunto 2 - Bebidas e comidas
   [
     {
-      name: "coffee",
+      name: "café",
       color: "#6F4E37", // brown
       Icon: Coffee
     },
     {
-      name: "egg",
+      name: "ovo",
       color: "#F4F0CB", // cream
       Icon: Egg
     },
@@ -66,7 +66,7 @@ const fruitIconSets = [
       Icon: Pizza
     },
     {
-      name: "fish",
+      name: "peixe",
       color: "#4169E1", // blue
       Icon: Fish
     }
@@ -74,22 +74,22 @@ const fruitIconSets = [
   // Conjunto 3 - Mais alimentos
   [
     {
-      name: "salad",
+      name: "salada",
       color: "#4CAF50", // green
       Icon: Salad
     },
     {
-      name: "soup",
+      name: "sopa",
       color: "#E67E22", // orange-brown
       Icon: Soup
     },
     {
-      name: "sandwich",
+      name: "sanduíche",
       color: "#D2B48C", // tan
       Icon: Sandwich
     },
     {
-      name: "cake",
+      name: "bolo",
       color: "#FF69B4", // pink
       Icon: Cake
     }

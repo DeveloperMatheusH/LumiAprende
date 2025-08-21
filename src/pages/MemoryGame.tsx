@@ -43,8 +43,8 @@ const MemoryGame: React.FC = () => {
   const updateCurrentIconSetName = () => {
     const iconSet = getCurrentIconSet();
     if (iconSet && iconSet.length > 0) {
-      // Gera um nome baseado nas frutas do conjunto atual
-      const fruitNames = iconSet.map(fruit => 
+      // Gera um nome baseado nos alimentos do conjunto atual
+      const fruitNames = iconSet.map(fruit =>
         fruit.name.charAt(0).toUpperCase() + fruit.name.slice(1)
       ).join(", ");
       setCurrentIconSetName(fruitNames);
@@ -265,9 +265,9 @@ const MemoryGame: React.FC = () => {
         </div>
       </div>
       
-      {/* Current Fruit Set display */}
+      {/* Current Food Set display */}
       <div className="glass-card px-3 py-1 rounded-full mb-2 text-sm text-center">
-        <span>Conjunto atual: {currentIconSetName}</span>
+        <span>Alimentos atuais: {currentIconSetName}</span>
       </div>
       
       {/* Restart button */}
@@ -308,11 +308,11 @@ const MemoryGame: React.FC = () => {
             Parabéns! <Trophy className="inline-block ml-2 text-yellow-500" size={28} />
           </DialogTitle>
           <DialogDescription className="text-gray-600">
-            Novas frutas foram desbloqueadas para a próxima partida!
+            Novos alimentos foram desbloqueados para a próxima partida!
           </DialogDescription>
           <div className="py-4 text-lg text-gray-700">
             <p>Parabéns pequeno(a) Lumi, você completou o jogo!</p>
-            <p className="mt-2">Pronto para mais uma rodada com novas frutas?</p>
+            <p className="mt-2">Pronto para mais uma rodada com novos alimentos?</p>
             <div className="flex items-center justify-center mt-3 space-x-2">
               <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
               <Star className="h-5 w-5 text-yellow-400" fill="#FFD700" />
