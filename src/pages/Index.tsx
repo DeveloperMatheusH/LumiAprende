@@ -28,7 +28,7 @@ const Index = () => {
           </div>
         </div>
 
-        <h1 className="font-bubblegum text-4xl sm:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600">
+        <h1 className="font-bubblegum text-4xl sm:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-900">
           Lumi Aprende
         </h1>
         
